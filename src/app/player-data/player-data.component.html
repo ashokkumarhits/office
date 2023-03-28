@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <button type="button" class="btn btn-outline-primary btn-lg mt-5 ml-5" (click)="get_api()">GET</button>
+        <button type="button" class="btn btn-outline-success btn-lg mt-5 ml-5" (click)="btn_post()">POST</button>
+        <button type="button" class="btn btn-outline-dark btn-lg mt-5 ml-5" (click)="btn_put()">PUT</button>
+        <button type="button" class="btn btn-outline-warning btn-lg mt-5 ml-5" (click)="btn_delete()">DELETE</button>     
+        <button type="button" class="btn btn-outline-danger btn-lg mt-5 ml-5" (click)="error_api()">REGISTER</button>   
+    </div>
+</div>
+
+<div class="row mt-5" *ngIf="flag_get">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Players Data</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Details of all players.</h6>
+                <hr>
+                <div class="card-text m-2 border border-warning p-2" *ngFor="let item of players" style="display: inline-block;">
+                    <b><span class="text-success">Name:&nbsp;</span></b>{{item.p_Name}}<br>
+                    <b><span class="text-success">Age:&nbsp;</span></b>{{item.p_Age+" "}}yrs<br>
+                    <b><span class="text-success">Category:&nbsp;</span></b>{{item.p_Category}}<br>
+                    <b><span class="text-success">Jersey No:&nbsp;</span></b>{{item.p_Jno}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5" *ngIf="flag_post">
+<div class="col-6 offset-3">
+    <form #playerForm="ngForm" (ngSubmit)="post_api(playerForm.value)">
+        <div class="form-group">
+            <label for="p_name">Name</label>
+            <input type="text" class="form-control" id="p_name" name="p_Name" [(ngModel)]="player.p_Name" minlength="7" maxlength="20" required>
+        </div>
+        <div class="form-group">
+            <label for="p_age">Age</label>
+            <input type="number" class="form-control" id="p_age" name="p_Age" [(ngModel)]="player.p_Age" min="20" max="45" required>
+        </div>
+        <div class="form-group">
+            <label for="p_category">Category</label>
+            <input type="text" class="form-control" id="p_category" name="p_Category" [(ngModel)]="player.p_Category" required>
+        </div>
+        <div class="form-group">
+            <label for="p_jno">Jersey No.</label>
+            <input type="number" class="form-control" id="p_jno" name="p_Jno" [(ngModel)]="player.p_Jno" required>
+        </div>
+        <input type="submit" class="btn btn-outline-danger" [disabled]="!playerForm.valid" value="Submit">
+        <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Clear">
+    </form>
+    <div class="alert alert-info mt-2" *ngIf="msg">{{msg}}</div>
+</div>
+</div>
+
+<div class="row mt-5" *ngIf="flag_put">
+    <div class="col-6 offset-3">
+        <div class="form-group">
+            <label for="u_id">Update Id</label>
+            <input type="text" class="form-control" id="u_id" [(ngModel)]="update_id">
+        </div>
+        <form #playerForm="ngForm" (ngSubmit)="put_api(update_id,playerForm.value)">
+            <div class="form-group">
+                <label for="p_name">Name</label>
+                <input type="text" class="form-control" id="p_name" name="p_Name" [(ngModel)]="player.p_Name" minlength="7" maxlength="20" required>
+            </div>
+            <div class="form-group">
+                <label for="p_age">Age</label>
+                <input type="number" class="form-control" id="p_age" name="p_Age" [(ngModel)]="player.p_Age" min="20" max="45" required>
+            </div>
+            <div class="form-group">
+                <label for="p_category">Category</label>
+                <input type="text" class="form-control" id="p_category" name="p_Category" [(ngModel)]="player.p_Category" required>
+            </div>
+            <div class="form-group">
+                <label for="p_jno">Jersey No.</label>
+                <input type="number" class="form-control" id="p_jno" name="p_Jno" [(ngModel)]="player.p_Jno" required>
+            </div>
+            <input type="submit" class="btn btn-outline-danger" [disabled]="!playerForm.valid" value="Submit">
+            <input type="reset" class="btn btn-outline-dark" style="float: right;" value="Clear">
+        </form>
+        <div class="alert alert-info mt-2" *ngIf="u_msg">{{u_msg}}</div>
+    </div>
+    </div>
+
+
+<div class="row mt-5" *ngIf="flag_delete">
+    <div class="col-6 offset-3">
+        <div class="form-group">
+            <label for="d_id">Delete Id</label>
+            <input type="text" class="form-control" id="d_id" [(ngModel)]="update_id">
+        </div>
+        <button type="button" class="btn btn-outline-dark text-center" (click)="delete_api(update_id)">Remove</button>
+        <div class="alert alert-info mt-2" *ngIf="d_msg">{{d_msg}}</div> 
+    </div>
+</div>
+
+<div class="row mt-5" *ngIf="flag_register">
+<div class="col-6 offset-3">  
+<div class="alert alert-secondary mt-2" *ngIf="e_msg">{{e_msg}}</div>
+</div>
+</div>

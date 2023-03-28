@@ -1,0 +1,26 @@
+<p>emplist works!</p>
+{{e|json}}
+{{e.Eid}}
+{{e.Ename}}
+{{e.Salary}}
+{{e.Doj|date}}
+<table [cellPadding]="10"[cellSpacing]="10">
+   <th>Eid</th>
+   <th>Ename</th>
+   <th>Salary</th>
+   <th>doj</th>
+   <th colspan="3">department</th>
+   <th colspan="3">skill</th>
+
+   <tr *ngFor="let e of emps">
+    <td>{{e.Eid}}</td>
+    <td>{{e.Ename}}</td>
+    <td>{{e.Salary}}</td>
+    <td>{{e.Doj|date}}</td>
+    <td colspan="3">{{e.dept.Did}} {{e.dept.Dname}} {{e.dept.location}}</td>
+    <li *ngFor="let i of e.skill">
+        ID: {{i.skid}}<br>Name: {{i.skname}}<br>Credits: {{i.credits}}
+    </li>
+   </tr>
+</table>
+

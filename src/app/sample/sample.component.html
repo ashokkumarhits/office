@@ -1,0 +1,17 @@
+<p>sample works!</p>
+
+<div>
+    <form>
+        enter the first number:
+        <input type="number" required name="first" [(ngModel)]="a"/><br/>
+        enter the second number:
+        <input type="number" required name="second" [(ngModel)]="b"/><br/>
+        <input type="submit" value="add"(click)="add()"/>
+
+    </form>
+</div>
+<h1 *ngIf="c>0">the result is {{c}}</h1>
+
+
+
+

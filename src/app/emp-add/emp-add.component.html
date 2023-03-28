@@ -1,0 +1,77 @@
+<div>
+    <form #addform="ngForm" (submit)="addnew()">
+        <div>
+            Eid:
+            <input type="text" name="eid" [(ngModel)]="e.Eid" required>
+        </div>
+        <div>
+            Ename:
+            <input type="text" name="ename" [(ngModel)]="e.Ename">
+        </div>
+        <div>
+            Salary:
+            <input type="number" name="salary" min ="2000" max="5000" #sal="ngModel" [(ngModel)]="e.Salary">
+            <span *ngIf="sal.touched && sal.invalid" style="color:red">salary should be in the specified range</span>
+        </div>
+        <div>
+            Doj:
+            <input type="date" name="dateofjoin" [(ngModel)]="e.Doj">
+        </div>
+        <div>
+            dept:
+            <div>
+                Department id:
+                <select *[(ngModel)]="e.dept.Did">
+                    <option value="id" >1</option>
+                    <option value="id">2</option>
+                    <option value="id">3</option>
+                
+            </select>
+            </div>
+            <div>
+                department name:
+                <select [(ngModel)]="e.dept.Dname">
+                    <option value="Dname" >CSE</option>
+                    <option value="Dname" >EEE</option>
+                    <option value="Dname" >ECE</option>
+                    <option value="Dname">IT</option>
+                    </select>
+                
+            </div>
+            <div>
+                Location:
+                <select>
+                    <option value="Location" [(ngModel)]="e.dept.location">chennai</option>
+                    <option value="Location"[(ngModel)]="e.dept.location">banglore</option>
+                                  
+            </select>
+            </div>
+        </div>
+        <div>
+            skills:
+            <div>
+                skill id:
+                <input type="text" name="skid"[(ngModel)]="e.skill">
+            </div>
+            <div>
+                skill name:
+                <select>
+                    <option value="skill"[(ngModel)]="e.skill">java</option>
+                    <option value="skill">python</option>
+                    <option value="skill">c#</option>
+                
+            </select>
+            </div>
+             <div>
+                credits:
+                <select>
+                    <option value="credits">1</option>
+                    <option value="credits">2</option>          
+            </select>
+            </div>
+        </div>
+        <div>
+            <input type="submit" name="register" [disabled]="!addform.valid"/>
+        </div>
+    </form>
+</div>
